@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />   
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 50px 100px;
+            background-color: rgb(216, 234, 249);
+        }
+
+        h1 {
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .container {
+            margin-top: 50px;
+            text-align: center;
+            justify-content: center;
+            background-color: #1abc9c;
+            padding: 50px;
+        }
+
+        .input {
+            display: inline-block;
+        }
+
+        #cel,
+        #fah,
+        #kel {
+            padding: 5px 10px;
+            margin: 15px;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        label {
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Temperature Converter<i class="fa-solid fa-temperature-three-quarters"></i></h1>
+    <div class="container">
+
+        <div class="input">
+            <label for="">Celsius</label>
+            <input type="number" id="cel" value="0">
+        </div>
+        <div class="input">
+            <label for="">Fahrenheit</label>
+            <input type="number" id="fah" value="32">
+        </div>
+        <div class="input">
+            <label for="">Kelvin</label>
+            <input type="number" id="kel" value="273.15">
+        </div>
+        
+    </div>
+</body>
+
+<script>
+    let celsiusInput = document.getElementById('cel')
+    let fahrenheitInput = document.getElementById('fah')
+    let kelvinInput = document.getElementById('kel')
+
+    function roundNumber(number) {
+        return Math.round(number * 100) / 100
+    }
+
+
+    /* Celcius to Fahrenheit and Kelvin */
+    celsiusInput.addEventListener('input', function () {
+        let cTemp = parseFloat(celsiusInput.value)
+        let fTemp = (cTemp * (9 / 5)) + 32
+        let kTemp = cTemp + 273.15
+
+        fahrenheitInput.value = roundNumber(fTemp)
+        kelvinInput.value = roundNumber(kTemp)
+    })
+
+
+    /* Fahrenheit to Celcius and Kelvin */
+    fahrenheitInput.addEventListener('input', function () {
+        let fTemp = parseFloat(fahrenheitInput.value)
+        let cTemp = (fTemp - 32) * (5 / 9)
+        let kTemp = (fTemp - 32) * (5 / 9) + 273.15
+
+        celsiusInput.value = roundNumber(cTemp)
+        kelvinInput.value = roundNumber(kTemp)
+    })
+
+    /* Kelvin to Celcius and Fahrenheit */
+    kelvinInput.addEventListener('input', function () {
+        let kTemp = parseFloat(kelvinInput.value)
+        let cTemp = kTemp - 273.15
+        let fTemp = (kTemp - 273.15) * (9 / 5) + 32
+
+        celsiusInput.value = roundNumber(cTemp)
+        fahrenheitInput.value = roundNumber(fTemp)
+    })
+
+</script>
+
+</html>
